@@ -68,7 +68,7 @@ function Model2({ url }: { url: string }) {
       // meshRef.current.scale.set(15, 15, 15)
 
       gsap.to(meshRef.current.scale, {
-        x: 0.8, y: 0.9, z: 0.8,
+        x: 0.8, y: 0.8, z: 0.8,
         duration: 0.7, ease: 'power4.out',
       })
       gsap.to(meshRef.current.rotation, {
@@ -89,7 +89,7 @@ function Scene1() {
   return (
     <>
       <Suspense fallback={null}>
-        <Model url="/model.gltf" />
+        <Model url="/model.glb" />
         <directionalLight intensity={10} position={[1, 2, 0]} />
       </Suspense>
 
@@ -121,7 +121,7 @@ function Scene2() {
 }
 
 export default function Render() {
-  const { pageTransition } = useStore()
+  const { pageTransition,setPageTransition } = useStore()
   const canvasRef1 = useRef<HTMLDivElement>(null)
   const canvasRef2 = useRef<HTMLDivElement>(null)
 
@@ -129,7 +129,7 @@ export default function Render() {
     setTimeout(() => {
       if (canvasRef1.current) {
         gsap.to(canvasRef1.current, { opacity: 1, duration: 0.1 })
-        gsap.to(canvasRef1.current, { opacity: 0, duration: 0.1, delay: 2.35 })
+        gsap.to(canvasRef1.current, { opacity: 0, duration: 0.1, delay: 2.35, onComplete: () => { setPageTransition(false) } })
       }
       if (canvasRef2.current) {
         gsap.to(canvasRef2.current, { opacity: 1, duration: 0.1,delay: 0.5})
@@ -150,7 +150,7 @@ export default function Render() {
       </div>
 
       {/* Second Layer - Model2 */}
-      <div ref={canvasRef2} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100%', zIndex: 9, opacity: 0, pointerEvents: 'none' }}> z
+      <div ref={canvasRef2} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100%', zIndex: 9, opacity: 0, pointerEvents: 'none' }}>
         <Canvas orthographic camera={{ position: [0, 0, 20], zoom: 100, near: 0.1, far: 1000 }} gl={{ alpha: true, stencil: true, antialias: true }} style={{ position: 'fixed', width: '100%', height: '100%', zIndex: 1, background: 'transparent' }}>
           <Scene2 />
         </Canvas>

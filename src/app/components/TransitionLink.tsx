@@ -25,9 +25,9 @@ export default function TransitionLink({href,children}: {href:string,children:Re
             duration: 0.5,
             delay: 1.2,
         })
-        setTimeout(() => {
-            setPageTransition(false)
-        }, 2750);
+        // setTimeout(() => {
+        //     setPageTransition(false)
+        // }, 2750);
     }
 
     return (
