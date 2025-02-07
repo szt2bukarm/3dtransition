@@ -28,7 +28,7 @@ function Model({ url }: { url: string }) {
   useEffect(() => {
     if (meshRef.current) {
       meshRef.current.rotation.y = Math.PI / 2
-      meshRef.current.scale.set(15, 15, 15)
+      // meshRef.current.scale.set(15, 15, 15)
 
       gsap.to(meshRef.current.scale, {
         x: 0.8, y: 0.8, z: 0.8,
@@ -65,10 +65,10 @@ function Model2({ url }: { url: string }) {
   useEffect(() => {
     if (meshRef.current) {
       meshRef.current.rotation.y = Math.PI / 2
-      meshRef.current.scale.set(15, 15, 15)
+      // meshRef.current.scale.set(15, 15, 15)
 
       gsap.to(meshRef.current.scale, {
-        x: 0.8, y: 0.8, z: 0.8,
+        x: 0.8, y: 0.9, z: 0.8,
         duration: 0.7, ease: 'power4.out',
       })
       gsap.to(meshRef.current.rotation, {
@@ -94,7 +94,7 @@ function Scene1() {
       </Suspense>
 
       {/* Plane Mesh for Stencil Effect */}
-      <mesh scale={[40, 40, 1]} renderOrder={1}>
+      <mesh scale={[50, 50, 1]} renderOrder={1}>
         <planeGeometry />
         <meshBasicMaterial
           color="black"
